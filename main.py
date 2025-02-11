@@ -29,11 +29,11 @@ def main():
   # Exemplo de consulta
   column_name1 = "Letter"
   value1 = "A"
-  print(f"Bitmap para '{value}' na coluna '{column_name1}':")
+  print(f"Bitmap para '{value1}' na coluna '{column_name1}':")
   print(bitmap_index.query(column_name1, value1), "\n")
   
   # Exemplo de compressão
-  print(f"Bitmap comprimido da coluna '{column_name}':")
+  print(f"Bitmap comprimido da coluna '{column_name1}':")
   print(bitmap_index.compress(column_name1), "\n")
   
   # Exemplo de interseção

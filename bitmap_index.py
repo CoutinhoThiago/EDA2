@@ -48,22 +48,22 @@ class BitmapIndex:
         compressed.append((bitmap[-1], count))
         return compressed
 
-    def intersect(self, column_name, value1, value2):
+    def intersect(self, column_name1, column_name2, value1, value2):
         # Realiza a interseção entre dois bitmaps.
-        bitmap1 = self.query(column_name, value1)
-        bitmap2 = self.query(column_name, value2)
+        bitmap1 = self.query(column_name1, value1)
+        bitmap2 = self.query(column_name2, value2)
         return [b1 & b2 for b1, b2 in zip(bitmap1, bitmap2)]
 
-    def union(self, column_name, value1, value2):
+    def union(self, column_name1, column_name2, value1, value2):
         # Realiza a união entre dois bitmaps.
-        bitmap1 = self.query(column_name, value1)
-        bitmap2 = self.query(column_name, value2)
+        bitmap1 = self.query(column_name1, value1)
+        bitmap2 = self.query(column_name2, value2)
         return [b1 | b2 for b1, b2 in zip(bitmap1, bitmap2)]
 
-    def difference(self, column_name, value1, value2):
+    def difference(self, column_name1, column_name2, value1, value2):
         # Realiza a diferença entre dois bitmaps.
-        bitmap1 = self.query(column_name, value1)
-        bitmap2 = self.query(column_name, value2)
+        bitmap1 = self.query(column_name1, value1)
+        bitmap2 = self.query(column_name2, value2)
         return [b1 & ~b2 for b1, b2 in zip(bitmap1, bitmap2)]
 
 

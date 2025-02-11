@@ -14,36 +14,41 @@ def main():
   # Carregar dados
   data10 = load_data("data10.csv")
   data = load_data("data.csv")
-
+  
   # Cria o Bitmap Index para as colunas especificadas
   column_names = ["Letter"]  
   bitmap_index = BitmapIndex(column_names)
   bitmap_index.build_index(data10)
-
+  
+  column_names2= ["Color", "Letter"]  
+  bitmap_index2 = BitmapIndex(column_names2)
+  bitmap_index2.build_index(data10)
+  
+  print("Criar Bitmap Index\n")
+  
   # Exemplo de consulta
-  column_name = "Letter"
-  value = "A"
-  print(f"Bitmap para '{value}' na coluna '{column_name}':")
-  print(bitmap_index.query(column_name, value))
-
-  # Exemplo de compressão
-  print(f"Bitmap comprimido para '{value}' na coluna '{column_name}':")
-  print(bitmap_index.compress(column_name))
-
-  # Exemplo de interseção
+  column_name1 = "Letter"
   value1 = "A"
-  value2 = "B"
+  print(f"Bitmap para '{value}' na coluna '{column_name1}':")
+  print(bitmap_index.query(column_name1, value1), "\n")
+  
+  # Exemplo de compressão
+  print(f"Bitmap comprimido da coluna '{column_name}':")
+  print(bitmap_index.compress(column_name1), "\n")
+  
+  # Exemplo de interseção
+  column_name2 = "Color"
+  value2 = "Red"
   print(f"Interseção entre '{value1}' e '{value2}':")
-  print(bitmap_index.intersect(column_name, value1, value2))
-
+  print(bitmap_index2.intersect(column_name1, column_name2, value1, value2), "\n")
+  
   # Exemplo de união
   print(f"União entre '{value1}' e '{value2}':")
-  print(bitmap_index.union(column_name, value1, value2))
-
+  print(bitmap_index2.union(column_name1, column_name2, value1, value2), "\n")
+  
   # Exemplo de diferença
   print(f"Diferença entre '{value1}' e '{value2}':")
-  print(bitmap_index.difference(column_name, value1, value2))
-
+  print(bitmap_index2.difference(column_name1, column_name2, value1, value2), "\n")
   # EXEMPLO COMPLEXO DE COMPARAÇÃO
 
   # Comparação de desempenho para busca simples
